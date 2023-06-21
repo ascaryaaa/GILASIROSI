@@ -1,0 +1,17 @@
+GILASIROSI
+
+1. Melihat barang
+2. Mencari barang (berdasarkan kategori/nama/kecamatan/harga)
+3. Melihat Kategori Barang
+3. Melakukan login (untuk UMKM)
+4. Menambakan barang (untuk UMKM)
+5. Melakukan update barang (untuk UMKM)
+6. Menghapus barang (untuk UMKM)
+
+
+kurang: 
+new barang (done)
+edit barang (done)
+login (done)
+search result
+profil not login (done)
