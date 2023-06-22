@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 22, 2023 at 06:01 AM
+-- Generation Time: Jun 22, 2023 at 02:03 PM
 -- Server version: 5.6.20-log
 -- PHP Version: 5.4.31
 
@@ -43,16 +43,16 @@ CREATE TABLE IF NOT EXISTS `barang` (
 --
 
 INSERT INTO `barang` (`barang_id`, `barang_nama`, `barang_pirt`, `barang_harga`, `barang_deskripsi`, `barang_foto`, `barang_link`, `kategori_id`, `UMKM_id`) VALUES
-(2, 'Albanna Egg Roll', '', '30000.00', 'Albanna Egroll', 'foto', 'https://gilasirosi.banyumaskab.go.id/ALBANNA_EGG_ROLLS_31', 2, 2),
-(3, ' Keripik Pare Mak Cinov Keripik Pare Mak Cinov ', '5063302012715-25', '18500.00', 'Adalah Keripik Pare, yang terbuat dari olahan sayur pare dan tepung Mokaf', 'foto', 'https://gilasirosi.banyumaskab.go.id/Keripik_Pare_Mak_Cinov_35', 2, 3),
-(1, 'Stick Jahe', ' 5053302030036-27 ', '16000.00', 'Stik jahe makanan ringan', 'foto', 'https://gilasirosi.banyumaskab.go.id/Stick_Jahe_16', 2, 1),
-(4, 'Nasi liwet ayam bakar Sambel galak', '-', '17000.00', 'Nasi luwet  dengan rempah tradisional  di bungkus dengan daun pisang', 'foto', 'https://api.whatsapp.com/send/?phone=%2B6281327776080&text&app_absent=0', 2, 4),
-(5, 'Rengginang Poniah', '2113302010062-27', '15000.00', 'Salah satu produk olahan yang terbuat dari aci singkong pilihan yang diolah secara tradisional', 'foto', 'https://gilasirosi.banyumaskab.go.id/RENGGINANG_PONIAH_41', 2, 5),
-(6, 'Tas Rajut', '-', '350000.00', 'Tas rajut ukuran 30 x 10 x 25', 'foto', 'https://gilasirosi.banyumaskab.go.id/Tas_Rajut_by_Rusmy_Rose_Collection_127', 4, 6),
-(7, 'Home dekor (customize)', '-', '55000.00', 'adikan rumahmu lebih cantik dengan pajangan dinding yang astetik sehingga rumah lebih indah', 'foto', 'https://gilasirosi.banyumaskab.go.id/Home_dekor_customize_by_teraskayupwt_136', 4, 6),
-(8, 'Bros dagu Safitri', '-', '5000.00', 'Telp.085743110545', 'foto', 'https://gilasirosi.banyumaskab.go.id/Bros_dagu_Safitri_161', 4, 7),
-(9, 'Buket pengantin', '-', '150000.00', 'Terbuat dari pita santen difungsikan untuk kegiatan wadding bilamana dapat lembaran bunga ini', 'foto', 'https://api.whatsapp.com/message/SHRUWKUMJGC2G1?autoload=1&app_absent=0', 4, 8),
-(10, 'Estu Juice', '-', '2000.00', 'Aneka Juice', 'foto', 'https://gilasirosi.banyumaskab.go.id/Estu_Juice_182', 3, 9);
+(2, 'Albanna Egg Roll', '', '30000.00', 'Albanna Egroll', '/web/albana-eggroll.jpg', 'https://gilasirosi.banyumaskab.go.id/ALBANNA_EGG_ROLLS_31', 2, 2),
+(3, ' Keripik Pare Mak Cinov', '5063302012715-25', '18500.00', 'Adalah Keripik Pare, yang terbuat dari olahan sayur pare dan tepung Mokaf', '/web/keripik-pare.jpg', 'https://gilasirosi.banyumaskab.go.id/Keripik_Pare_Mak_Cinov_35', 2, 3),
+(1, 'Stick Jahe', ' 5053302030036-27 ', '16000.00', 'Stik jahe makanan ringan', '/web/stick-jahe.jpeg', 'https://gilasirosi.banyumaskab.go.id/Stick_Jahe_16', 2, 1),
+(4, 'Nasi liwet ayam bakar Sambel galak', '-', '17000.00', 'Nasi luwet  dengan rempah tradisional  di bungkus dengan daun pisang', '/web/nasi-liwet-galak.jpg', 'https://api.whatsapp.com/send/?phone=%2B6281327776080&text&app_absent=0', 2, 4),
+(5, 'Rengginang Poniah', '2113302010062-27', '15000.00', 'Salah satu produk olahan yang terbuat dari aci singkong pilihan yang diolah secara tradisional', '/web/rengginang-poniah.jpg', 'https://gilasirosi.banyumaskab.go.id/RENGGINANG_PONIAH_41', 2, 5),
+(6, 'Tas Rajut', '-', '350000.00', 'Tas rajut ukuran 30 x 10 x 25', '/web/tas-rajut.jpg', 'https://gilasirosi.banyumaskab.go.id/Tas_Rajut_by_Rusmy_Rose_Collection_127', 4, 6),
+(7, 'Home dekor (customize)', '-', '55000.00', 'adikan rumahmu lebih cantik dengan pajangan dinding yang astetik sehingga rumah lebih indah', '/web/home-decor.jpg', 'https://gilasirosi.banyumaskab.go.id/Home_dekor_customize_by_teraskayupwt_136', 4, 6),
+(8, 'Bros dagu Safitri', '-', '5000.00', 'Telp.085743110545', '/web/bros-dagu.jpg', 'https://gilasirosi.banyumaskab.go.id/Bros_dagu_Safitri_161', 4, 7),
+(9, 'Buket pengantin', '-', '150000.00', 'Terbuat dari pita santen difungsikan untuk kegiatan wadding bilamana dapat lembaran bunga ini', '/web/buket-bunga.jpg', 'https://api.whatsapp.com/message/SHRUWKUMJGC2G1?autoload=1&app_absent=0', 4, 8),
+(10, 'Estu Juice', '-', '2000.00', 'Aneka Juice', '/web/estu-juice.jpeg', 'https://gilasirosi.banyumaskab.go.id/Estu_Juice_182', 3, 9);
 
 -- --------------------------------------------------------
 
@@ -62,18 +62,19 @@ INSERT INTO `barang` (`barang_id`, `barang_nama`, `barang_pirt`, `barang_harga`,
 
 CREATE TABLE IF NOT EXISTS `kategori` (
 `kategori_id` int(5) NOT NULL,
-  `kategori_nama` varchar(50) NOT NULL
+  `kategori_nama` varchar(50) NOT NULL,
+  `kategori_foto` varchar(200) NOT NULL
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `kategori`
 --
 
-INSERT INTO `kategori` (`kategori_id`, `kategori_nama`) VALUES
-(1, 'Jasa'),
-(2, 'Makanan'),
-(3, 'Minuman'),
-(4, 'Kerajinan');
+INSERT INTO `kategori` (`kategori_id`, `kategori_nama`, `kategori_foto`) VALUES
+(1, 'Jasa', '/web/k-jasa.png'),
+(2, 'Makanan', '/web/k-makanan.png'),
+(3, 'Minuman', '/web/k-minuman.png'),
+(4, 'Kerajinan', '/web/k-kerajinan.png');
 
 -- --------------------------------------------------------
 
