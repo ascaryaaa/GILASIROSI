@@ -8,11 +8,11 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            bar_nama:'',
-            bar_harga:'',
-            bar_kategori:'',
-            bar_deskripsi:'',
-            bar_foto:'',
+            barang_nama:'',
+            barang_harga:'',
+            barang_kategori:'',
+            barang_deskripsi:'',
+            barang_foto:'',
             listData:[],
         };
         this.url = 'http://192.168.1.7/gilasirosi/api/api.php';
@@ -69,19 +69,19 @@ class Home extends Component {
                                     <TouchableOpacity color='#ffffff'>
                                         <View style={{flexDirection:'row',padding:1,borderRadius:10,marginHorizontal:5}}>
                                             <Image
-                                                source={{uri: 'http://192.168.1.7/gilasirosi/' + val.bar_foto}}
+                                                source={{uri: 'http://192.168.1.7/gilasirosi/' + val.barang_foto}}
                                                 style={{height:200,width:150,borderRadius:10}}
                                             />
                                             <View style={{flexDirection:'column',padding:1,borderRadius:10,marginHorizontal:1}}>
                                                 <View style={{backgroundColor:'#080808',borderRadius:10,height:30,width:150,marginTop:10,marginLeft:10}}>
-                                                    <Text style={{fontWeight:'bold',color:'#ffffff',alignSelf:'center',marginTop:5,fontSize:16}}>{val.bar_nama}</Text>
+                                                    <Text style={{fontWeight:'bold',color:'#ffffff',alignSelf:'center',marginTop:5,fontSize:16}}>{val.barang_nama}</Text>
                                                 </View>
                                                 <View style={{borderRadius:10,height:60,width:150,marginTop:10,marginLeft:10}}>
                                                     <Text style={{fontSize:16,paddingTop:5,fontWeight:'bold',fontSize:13}}>Harga</Text>
-                                                    <Text style={{fontSize:16,paddingTop:5,fontWeight:'bold'}}>Rp.{val.bar_harga},00</Text>
+                                                    <Text style={{fontSize:16,paddingTop:5,fontWeight:'bold'}}>Rp.{val.barang_harga},00</Text>
                                                 </View>
                                                 <View style={{borderRadius:10,height:80,width:150,marginTop:10,marginLeft:10}}>
-                                                    <Text style={{fontSize:16,paddingTop:5,fontWeight:'bold'}}>{val.bar_foto}</Text>
+                                                    <Text style={{fontSize:16,paddingTop:5,fontWeight:'bold'}}>{val.barang_deskripsi}</Text>
                                                 </View>
                                             </View>
                                         </View>
