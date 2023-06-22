@@ -1,14 +1,36 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import { View, Image, Text, TouchableOpacity,TouchableHighlight, StyleSheet } from "react-native";
+import { useRoute } from '@react-navigation/native';
 import Footer from "../component/footer";
 import {useNavigation} from '@react-navigation/native'
+
 export default function Detail(){
+    const [detailData, setdetailData] = useState([]);
     const navigation = useNavigation()
+    const route = useRoute();
+    const {id} = route.params;
+
+    useEffect(() => {
+        ambilDetailData(id);
+      }, [id]);
+
+      const ambilDetailData = async (id) => {
+        try {
+          const response = await fetch(`http://192.168.1.10/gilasirosi-main/api/api.php/?op=detail&barang_id=${id}`);
+          const json = await response.json();
+          console.log('Hasil yang didapat: ' + JSON.stringify(json.data.result));
+          setdetailData(json.data.result);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
     return (
         <View style={{backgroundColor:'#f6f6f6'}}>
-            <View>
+            {detailData.map((val,index)=>(
+                <View key={index}>
                 <Image
-                    source={require('../assets/kerajinan.jpg')}
+                    source={{ uri: 'http://192.168.1.10/gilasirosi-main/' + val.barang_foto }}
                     style={styles.produkimage}
                 />
                 <TouchableOpacity onPressIn={() => {navigation.goBack()}}>
@@ -19,23 +41,24 @@ export default function Detail(){
                 </TouchableOpacity>
                 <View style={styles.produkdetailcontainer}>
                     <View style={styles.textcontainer}>
-                        <Text style={styles.produktitle}>Bros Dagu</Text>
-                        <Text style={styles.normaltext}>Bros Dagu Safitri handmade</Text>
-                        <Text style={styles.boldtext}>Rp.5.000,00-</Text>
+                        <Text style={styles.produktitle}>{val.barang_nama}</Text>
+                        <Text style={styles.normaltext}>{val.barang_deskripsi}</Text>
+                        <Text style={styles.boldtext}>Rp.{val.barang_harga}</Text>
                         <Text style={styles.boldtext}>Kecamatan</Text>
-                        <Text style={styles.normaltext}>Rawaheng</Text>
+                        <Text style={styles.normaltext}>{val.kecamatan_nama}</Text>
                         <Text style={styles.boldtext}>Nama UMKM</Text>
-                        <Text style={styles.normaltext}>Samiati</Text>
+                        <Text style={styles.normaltext}>{val.UMKM_nama}</Text>
                         <Text style={styles.boldtext}>Alamat</Text>
-                        <Text style={styles.alamat}>Gembrong RT 03 RW 01 rawaheng</Text>
+                        <Text style={styles.alamat}>{val.UMKM_alamat}</Text>
                         <Text style={styles.boldtext}>Telefon / No Hp</Text>
-                        <Text style={styles.normaltext}>081272819023</Text>
+                        <Text style={styles.normaltext}>{val.UMKM_telp}</Text>
                     </View>
                     <View style={styles.kategori}>
-                        <Text style={styles.kategoriteks}>Kerajinan</Text>
+                        <Text style={styles.kategoriteks}>{val.kategori_nama}</Text>
                     </View>
                 </View>
             </View>
+            ))}
         </View>
     )
 }

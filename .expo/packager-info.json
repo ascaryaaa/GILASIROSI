@@ -1,0 +1,9 @@
+{
+  "expoServerPort": 19002,
+  "packagerPort": 19002,
+  "expoServerNgrokUrl": "https://ty-kit.anonymous.gilasirosi-main.exp.direct",
+  "packagerNgrokUrl": "https://ty-kit.anonymous.gilasirosi-main.exp.direct",
+  "ngrokPid": 23032,
+  "packagerPid": null,
+  "webpackServerPort": null
+}

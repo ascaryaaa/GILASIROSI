@@ -1,8 +1,31 @@
-import React from 'react';
+import React, { useState,useEffect } from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View, Image,ScrollView } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import Footer from '../component/footer';
 
-export default function Kategori(){
+export default function Kategori({navigation}){
+    const [kategori, setkategori] = useState([]);
+    
+    const navigateToKategori = (id) => {
+        console.log('Passing : ',id)
+        navigation.navigate('KategoriResult', { kategori_id: id });
+      }
+    useEffect(() => {
+        ambilKategori();
+      }, []);
+
+      const ambilKategori = async () => {
+        try {
+          const response = await fetch(`http://192.168.1.10/gilasirosi-main/api/api.php/?op=kategori_display`);
+          const json = await response.json();
+          console.log('Hasil yang didapat: ' + JSON.stringify(json.data.result));
+          setkategori(json.data.result);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+
     return (
         <View>
             <View style={styles.background}>
@@ -12,51 +35,20 @@ export default function Kategori(){
                         style={styles.logo}
                     />
                     <Text style={styles.kategori}>Kategori</Text>                    
-                    <TouchableOpacity>
-                        <View style={styles.kategoripadding}>
-                            <Image
-                                source={require('../assets/category_kerajinan.png')}
-                                style={styles.kategoriimage}
-                            />
-                            <Text style={styles.kategoritotaltext}>208 Produk</Text>
+                    {kategori.map((val, index) => (
+                        <View key={index}>
+                            <TouchableOpacity onPress={() => { console.log('kategori_id:', val.kategori_id),navigateToKategori(val.kategori_id) }}>
+                                <View style={styles.kategoripadding}>
+                                    <Image
+                                        source={{ uri: 'http://192.168.1.10/gilasirosi-main/' + val.kategori_foto }}
+                                        style={styles.kategoriimage}
+                                    />
+                                    <Text style={styles.kategoritotaltext}>{val.kategori_total} Produk</Text>
+                                </View>
+                            </TouchableOpacity>
                         </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <View style={styles.kategoripadding}>
-                            <Image
-                                source={require('../assets/category_makanan.png')}
-                                style={styles.kategoriimage}
-                            />
-                            <Text style={styles.kategoritotaltext}>400 Produk</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <View style={styles.kategoripadding}>
-                            <Image
-                                source={require('../assets/category_minuman.png')}
-                                style={styles.kategoriimage}
-                            />
-                            <Text style={styles.kategoritotaltext}>12 Produk</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <View style={styles.kategoripadding}>
-                            <Image
-                                source={require('../assets/category_rt.png')}
-                                style={styles.kategoriimage}
-                            />
-                            <Text style={styles.kategoritotaltext}>1271 Produk</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <View style={{paddingVertical:10,paddingBottom:100}}>
-                            <Image
-                                source={require('../assets/category_jasa.png')}
-                                style={styles.kategoriimage}
-                            />
-                            <Text style={styles.kategoritotaltext}>9 Produk</Text>
-                        </View>
-                    </TouchableOpacity>
+                    ))}
+                    <View style={{paddingBottom:150}}></View>
                 </ScrollView>
             </View>
             <Footer></Footer>
@@ -67,10 +59,10 @@ export default function Kategori(){
 
 const styles = StyleSheet.create({
     background:{
-        marginLeft:30,backgroundColor:'#f6f6f6'
+        marginLeft:30,backgroundColor:'#f6f6f6',paddingBottom:0
     },
     container:{
-        paddingTop:80,marginBottom:80
+        paddingTop:80,marginBottom:40
     },
     logo:{
         height:50,width:200,marginBottom:30,alignSelf:'center'

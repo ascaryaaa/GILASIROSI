@@ -1,28 +1,34 @@
 import { StatusBar } from 'expo-status-bar';
-import { useRoute } from "@react-navigation/native"
-import {useNavigation} from '@react-navigation/native'
+import { useRoute } from "@react-navigation/native";
+import { useNavigation } from '@react-navigation/native';
 import Footer from '../component/footer';
 import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, TextInput, TouchableOpacity, Image } from 'react-native';
 
-const Home = ({ navigation }) => {
-  const [listData, setListData] = useState([]);
-  const url = 'http://192.168.1.10/gilasirosi-main/api/api.php';
+const KategoriResult = () => {
+  const [kategoriData, setkategoriData] = useState([]);
+  const navigation = useNavigation();
+  const route = useRoute();
+  const {kategori_id} = route.params;
 
   const navigateToDetail = (id) => {
     navigation.navigate('Detail', { id });
   }
 
-  useEffect(() => {
-    ambilListData();
-  }, []);
 
-  const ambilListData = async () => {
+  useEffect(() => {
+    console.log('ID:', kategori_id);
+    if (kategori_id) {
+      ambilKategoriData(kategori_id);
+    }
+  }, [kategori_id]);
+
+  const ambilKategoriData = async (kategori_id) => {
     try {
-      const response = await fetch(url);
+      const response = await fetch(`http://192.168.1.10/gilasirosi-main/api/api.php/?op=kategori_filter&kategori_id=${kategori_id}`);
       const json = await response.json();
       console.log('Hasil yang didapat: ' + JSON.stringify(json.data.result));
-      setListData(json.data.result);
+      setkategoriData(json.data.result);
     } catch (error) {
       console.log(error);
     }
@@ -32,33 +38,8 @@ const Home = ({ navigation }) => {
     <View style={styles.background}>
       <ScrollView>
         <View style={styles.container}>
-          <View style={{ paddingTop: 80 }}>
-            <Image
-              source={require('../assets/logo.png')}
-              style={styles.logo}
-            />
-            <Text style={{ fontSize: 24 }}>Lorem</Text>
-            <Text style={{ fontSize: 18 }}>Lorem Ipsum Lorem Ipsum</Text>
-            <Text style={{ fontSize: 20, color: '#080808', fontWeight: 'bold' }}>Lorem Ipsum</Text>
-            <Text style={{ fontSize: 28, color: '#080808', fontWeight: 'bold' }}>Lorem Ipsum</Text>
-          </View>
-          <View style={styles.searchflex}>
-            <TextInput
-              placeholder='Cari...'
-              style={styles.searchinput}
-            ></TextInput>
-            <TouchableOpacity color='#ffffff' onPress={() => { navigation.navigate('Home') }}>
-              <View style={styles.searchbutton}>
-                <Image
-                  source={require('../assets/search.png')}
-                  style={{ width: 24, height: 24 }}
-                />
-              </View>
-            </TouchableOpacity>
-          </View>
-
-          <Text style={styles.produk}>Harga Bahan Pokok</Text>
-          {listData.map((val, index) => (
+          <Text style={styles.produk}>Hasil Pencarian untuk</Text>
+          {kategoriData.map((val, index) => (
             <View key={index}>
               <View style={styles.cardflex}>
                 <TouchableOpacity color='#ffffff' onPress={() => { navigateToDetail(val.barang_id) }}>
@@ -91,7 +72,7 @@ const Home = ({ navigation }) => {
   );
 }
 
-export default Home;
+export default KategoriResult
 
 const styles = ({
     background: {
