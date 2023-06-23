@@ -5,11 +5,11 @@ import Footer from '../component/footer';
 import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, TextInput, TouchableOpacity, Image } from 'react-native';
 
-const KategoriResult = () => {
-  const [kategoriData, setkategoriData] = useState([]);
+const SearchResult = () => {
+  const [searchData, setsearchData] = useState([]);
   const navigation = useNavigation();
   const route = useRoute();
-  const {kategori_id,kategori_nama} = route.params;
+  const {searchkey} = route.params;
 
   const navigateToDetail = (id) => {
     navigation.navigate('Detail', { id });
@@ -17,24 +17,24 @@ const KategoriResult = () => {
 
 
   useEffect(() => {
-    console.log('ID:', kategori_id);
-    if (kategori_id) {
-      ambilKategoriData(kategori_id);
+    console.log('ID:', searchkey);
+    if (searchkey) {
+      ambilSearchData(searchkey);
     }
-  }, [kategori_id]);
+  }, [searchkey]);
 
-  const ambilKategoriData = async (kategori_id) => {
+  const ambilSearchData = async (searchkey) => {
     try {
-      const response = await fetch(`http://192.168.1.7/gilasirosi/api/api.php/?op=kategori_filter&kategori_id=${kategori_id}`);
+      const response = await fetch(`http://192.168.1.7/gilasirosi/api/api.php/?op=search&searchkey=${searchkey}`);
       const json = await response.json();
       console.log('Hasil yang didapat: ' + JSON.stringify(json.data.result));
-      setkategoriData(json.data.result);
+      setsearchData(json.data.result);
     } catch (error) {
       console.log(error);
     }
   }
 
-  if (kategoriData == null){
+  if (searchData == null){
     return(
       <View>
         <Image 
@@ -44,7 +44,7 @@ const KategoriResult = () => {
         </Image>
         <Text
           style={{ marginHorizontal:20,paddingLeft:10,fontWeight:'bold',fontSize:15,textAlign:'center'}}
-        >Maaf hasil kategori "{kategori_nama}" tidak ditemukan</Text>
+        >Hasil Pencarian untuk {searchkey} tidak ditemukan</Text>
       </View>
     ) 
   }
@@ -53,8 +53,8 @@ const KategoriResult = () => {
     <View style={styles.background}>
       <ScrollView>
         <View style={styles.container}>
-          <Text style={styles.produk}>Kategori {kategori_nama}</Text>
-          {kategoriData.map((val, index) => (
+          <Text style={styles.produk}>Hasil Pencarian untuk "{searchkey}"</Text>
+          {searchData.map((val, index) => (
             <View key={index}>
               <View style={styles.cardflex}>
                 <TouchableOpacity color='#ffffff' onPress={() => { navigateToDetail(val.barang_id) }}>
@@ -86,7 +86,7 @@ const KategoriResult = () => {
   );
 }
 
-export default KategoriResult
+export default SearchResult
 
 const styles = ({
     background: {

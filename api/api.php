@@ -18,6 +18,7 @@ switch($op){
     case 'kategori_display':kategori_display();break;   
     case 'kategori_filter':kategori_filter();break;
     case 'kecamatan_filter':kecamatan_filter();break; 
+    case 'search':search();break; 
        
 }
 
@@ -96,11 +97,12 @@ function detail(){
 
 function kategori_display(){
     global $koneksi;
-    $sql1 = "SELECT k.kategori_id,k.kategori_foto, COUNT(b.kategori_id) AS kategori_total FROM kategori k LEFT JOIN barang b ON k.kategori_id = b.kategori_id GROUP BY k.kategori_id;";
+    $sql1 = "SELECT k.kategori_id,k.kategori_nama,k.kategori_foto, COUNT(b.kategori_id) AS kategori_total FROM kategori k LEFT JOIN barang b ON k.kategori_id = b.kategori_id GROUP BY k.kategori_id;";
     $q1 = mysqli_query($koneksi, $sql1);
     while($r1 = mysqli_fetch_array($q1)) {
         $hasil[] = array(
             'kategori_id' => $r1['kategori_id'],
+            'kategori_nama' => $r1['kategori_nama'],            
             'kategori_total' => $r1['kategori_total'],
             'kategori_foto' => $r1['kategori_foto'],
         );
@@ -131,6 +133,24 @@ function kecamatan_filter(){
     global $koneksi;
     $kecamatan_id = $_GET['kecamatan_id'];
     $sql1 = "SELECT * FROM barang INNER JOIN umkm ON barang.umkm_id = umkm.umkm_id WHERE barang.umkm_id = ANY (SELECT umkm_id FROM umkm WHERE kecamatan_id = '$kecamatan_id')";
+    $q1 = mysqli_query($koneksi, $sql1);
+    while($r1 = mysqli_fetch_array($q1)) {
+        $hasil[] = array(
+            'barang_id' => $r1['barang_id'],
+            'barang_nama' => $r1['barang_nama'],
+            'barang_harga' => $r1['barang_harga'],
+            'barang_deskripsi' => $r1['barang_deskripsi'],
+            'barang_foto' => $r1['barang_foto'],
+        );
+    }
+    $data['data']['result'] = $hasil;
+    echo json_encode($data);
+}
+
+function search(){
+    global $koneksi;
+    $searchkey = $_GET['searchkey'];
+    $sql1 = "SELECT * FROM barang WHERE barang_nama LIKE '%" . $searchkey . "%';";
     $q1 = mysqli_query($koneksi, $sql1);
     while($r1 = mysqli_fetch_array($q1)) {
         $hasil[] = array(

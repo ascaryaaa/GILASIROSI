@@ -9,7 +9,7 @@ const KecamatanResult = () => {
   const [kecamatanData, setkecamatanData] = useState([]);
   const navigation = useNavigation();
   const route = useRoute();
-  const {kecamatan_id} = route.params;
+  const {kecamatan_id,kecamatan_nama} = route.params;
 
   const navigateToDetail = (id) => {
     navigation.navigate('Detail', { id });
@@ -25,7 +25,7 @@ const KecamatanResult = () => {
 
   const ambilKecamatanData = async (kecamatan_id) => {
     try {
-      const response = await fetch(`http://192.168.1.10/gilasirosi-main/api/api.php/?op=kecamatan_filter&kecamatan_id=${kecamatan_id}`);
+      const response = await fetch(`http://192.168.1.7/gilasirosi/api/api.php/?op=kecamatan_filter&kecamatan_id=${kecamatan_id}`);
       const json = await response.json();
       console.log('Hasil yang didapat: ' + JSON.stringify(json.data.result));
       setkecamatanData(json.data.result);
@@ -35,20 +35,32 @@ const KecamatanResult = () => {
   }
 
   if (kecamatanData == null){
-    return <Text>Sorry data yang dicari tidak ada</Text>
+    return(
+      <View>
+        <Image 
+          source={require('../assets/No-data.png')}
+          style={{ width: 300, height: 300, marginTop:200,marginHorizontal:40 }}    
+        >
+        </Image>
+        <Text
+          style={{ marginHorizontal:20,paddingLeft:10,fontWeight:'bold',fontSize:15,textAlign:'center'}}
+        >Maaf kecamatan "{kecamatan_nama}" tidak memiliki barang</Text>
+      </View>
+    ) 
   }
+  
   return (
     <View style={styles.background}>
       <ScrollView>
         <View style={styles.container}>
-          <Text style={styles.produk}>Hasil Pencarian untuk</Text>
+          <Text style={styles.produk}>Kecamatan "{kecamatan_nama}"</Text>
           {kecamatanData.map((val, index) => (
             <View key={index}>
               <View style={styles.cardflex}>
                 <TouchableOpacity color='#ffffff' onPress={() => { navigateToDetail(val.barang_id) }}>
                   <View style={{ flexDirection: 'row', padding: 1, borderRadius: 10, marginHorizontal: 5 }}>
                     <Image
-                      source={{ uri: 'http://192.168.1.10/gilasirosi-main/' + val.barang_foto }}
+                      source={{ uri: 'http://192.168.1.7/gilasirosi/' + val.barang_foto }}
                       style={{ height: 200, width: 150, borderRadius: 10 }}
                     />
                     <View style={{ flexDirection: 'column', padding: 1, borderRadius: 10, marginHorizontal: 1 }}>
@@ -70,7 +82,6 @@ const KecamatanResult = () => {
           ))}
         </View>
       </ScrollView>
-      <Footer />
     </View>
   );
 }

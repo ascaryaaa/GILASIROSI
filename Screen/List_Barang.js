@@ -29,7 +29,7 @@ class List_Barang extends Component{
     }
 
     async deleteBarang(id){
-        await fetch("http://192.168.192.1/gilasirosi/api.php/?op=delete&id="+id)
+        await fetch("http://192.168.1.7/gilasirosi/api.php/?op=delete&id="+id)
         .then((response)=>response.json())
         .then((json)=>{
             alert('Data Berhasil Dihapus')

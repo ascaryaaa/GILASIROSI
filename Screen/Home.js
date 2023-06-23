@@ -6,12 +6,23 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, TextInput, TouchableOpacity, Image } from 'react-native';
 
 const Home = ({ navigation }) => {
+  
   const [listData, setListData] = useState([]);
-  const url = 'http://192.168.1.10/gilasirosi-main/api/api.php';
+  const url = 'http://192.168.1.7/gilasirosi/api/api.php';
+  const [searchkey, setsearchkey] = useState('');
 
   const navigateToDetail = (id) => {
     navigation.navigate('Detail', { id });
   }
+
+  const navigateSearch = (searchkey) => {
+    console.log(searchkey);
+    navigation.navigate('SearchResult', { searchkey });
+  }
+
+  const handleInputChange = (text) => {
+    setsearchkey(text);
+  };
 
   useEffect(() => {
     ambilListData();
@@ -45,9 +56,11 @@ const Home = ({ navigation }) => {
           <View style={styles.searchflex}>
             <TextInput
               placeholder='Cari...'
+              value={searchkey}
+              onChangeText={handleInputChange}
               style={styles.searchinput}
             ></TextInput>
-            <TouchableOpacity color='#ffffff' onPress={() => { navigation.navigate('Home') }}>
+            <TouchableOpacity color='#ffffff' onPress={() => { navigateSearch(searchkey) }}>
               <View style={styles.searchbutton}>
                 <Image
                   source={require('../assets/search.png')}
@@ -64,7 +77,7 @@ const Home = ({ navigation }) => {
                 <TouchableOpacity color='#ffffff' onPress={() => { navigateToDetail(val.barang_id) }}>
                   <View style={{ flexDirection: 'row', padding: 1, borderRadius: 10, marginHorizontal: 5 }}>
                     <Image
-                      source={{ uri: 'http://192.168.1.10/gilasirosi-main/' + val.barang_foto }}
+                      source={{ uri: 'http://192.168.1.7/gilasirosi/' + val.barang_foto }}
                       style={{ height: 200, width: 150, borderRadius: 10 }}
                     />
                     <View style={{ flexDirection: 'column', padding: 1, borderRadius: 10, marginHorizontal: 1 }}>

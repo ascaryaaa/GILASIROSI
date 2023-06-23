@@ -16,7 +16,7 @@ export default function Detail(){
 
       const ambilDetailData = async (id) => {
         try {
-          const response = await fetch(`http://192.168.1.10/gilasirosi-main/api/api.php/?op=detail&barang_id=${id}`);
+          const response = await fetch(`http://192.168.1.7/gilasirosi/api/api.php/?op=detail&barang_id=${id}`);
           const json = await response.json();
           console.log('Hasil yang didapat: ' + JSON.stringify(json.data.result));
           setdetailData(json.data.result);
@@ -30,7 +30,7 @@ export default function Detail(){
             {detailData.map((val,index)=>(
                 <View key={index}>
                 <Image
-                    source={{ uri: 'http://192.168.1.10/gilasirosi-main/' + val.barang_foto }}
+                    source={{ uri: 'http://192.168.1.7/gilasirosi/' + val.barang_foto }}
                     style={styles.produkimage}
                 />
                 <TouchableOpacity onPressIn={() => {navigation.goBack()}}>
