@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import { View, Image, Text, TouchableOpacity,TouchableHighlight, StyleSheet } from "react-native";
+import { View, Image, Text, ScrollView, TouchableOpacity,TouchableHighlight, StyleSheet } from "react-native";
 import { useRoute } from '@react-navigation/native';
 import Footer from "../component/footer";
 import {useNavigation} from '@react-navigation/native'
@@ -27,38 +27,42 @@ export default function Detail(){
 
     return (
         <View style={{backgroundColor:'#f6f6f6'}}>
-            {detailData.map((val,index)=>(
-                <View key={index}>
-                <Image
-                    source={{ uri: 'http://192.168.1.7/gilasirosi/' + val.barang_foto }}
-                    style={styles.produkimage}
-                />
-                <TouchableOpacity onPressIn={() => {navigation.goBack()}}>
+            <ScrollView>
+                {detailData.map((val,index)=>(
+                    <View key={index}>
                     <Image
-                        source={require('../assets/arrow.png')}
-                        style={styles.backbutton}
+                        source={{ uri: 'http://192.168.1.7/gilasirosi/' + val.barang_foto }}
+                        style={styles.produkimage}
                     />
-                </TouchableOpacity>
-                <View style={styles.produkdetailcontainer}>
-                    <View style={styles.textcontainer}>
-                        <Text style={styles.produktitle}>{val.barang_nama}</Text>
-                        <Text style={styles.normaltext}>{val.barang_deskripsi}</Text>
-                        <Text style={styles.boldtext}>Rp.{val.barang_harga}</Text>
-                        <Text style={styles.boldtext}>Kecamatan</Text>
-                        <Text style={styles.normaltext}>{val.kecamatan_nama}</Text>
-                        <Text style={styles.boldtext}>Nama UMKM</Text>
-                        <Text style={styles.normaltext}>{val.UMKM_nama}</Text>
-                        <Text style={styles.boldtext}>Alamat</Text>
-                        <Text style={styles.alamat}>{val.UMKM_alamat}</Text>
-                        <Text style={styles.boldtext}>Telefon / No Hp</Text>
-                        <Text style={styles.normaltext}>{val.UMKM_telp}</Text>
-                    </View>
-                    <View style={styles.kategori}>
-                        <Text style={styles.kategoriteks}>{val.kategori_nama}</Text>
+                    <TouchableOpacity onPressIn={() => {navigation.goBack()}}>
+                        <Image
+                            source={require('../assets/arrow.png')}
+                            style={styles.backbutton}
+                        />
+                    </TouchableOpacity>
+                    <View style={styles.produkdetailcontainer}>
+                        <View style={styles.textcontainer}>
+                            <View style={{ flexDirection: 'row', padding: 1, borderRadius: 10, marginBottom: 20}}>
+                                <Text style={styles.produktitle}>{val.barang_nama}</Text>
+                                <View style={styles.kategori}>
+                                    <Text style={styles.kategoriteks}>{val.kategori_nama}</Text>
+                                </View>
+                            </View>
+                            <Text style={styles.normaltext}>{val.barang_deskripsi}</Text>
+                            <Text style={styles.boldtext}>Rp.{val.barang_harga}</Text>
+                            <Text style={styles.boldtext}>Kecamatan</Text>
+                            <Text style={styles.normaltext}>{val.kecamatan_nama}</Text>
+                            <Text style={styles.boldtext}>Nama UMKM</Text>
+                            <Text style={styles.normaltext}>{val.UMKM_nama}</Text>
+                            <Text style={styles.boldtext}>Alamat</Text>
+                            <Text style={styles.alamat}>{val.UMKM_alamat}</Text>
+                            <Text style={styles.boldtext}>Telefon / No Hp</Text>
+                            <Text style={styles.normaltext}>{val.UMKM_telp}</Text>
+                        </View>
                     </View>
                 </View>
-            </View>
-            ))}
+                ))}
+            </ScrollView>
         </View>
     )
 }
@@ -81,7 +85,7 @@ const styles = StyleSheet.create({
     },
 
     produktitle: {
-        fontSize:24,fontWeight:'bold'
+        fontSize:24,fontWeight:'bold', borderRadius: 10, width: 220
     },
 
     boldtext:{
@@ -97,7 +101,7 @@ const styles = StyleSheet.create({
     },
 
     kategori:{
-        backgroundColor:'#000072',height:30,width:80,borderRadius:10,marginTop:25,marginLeft:10
+        backgroundColor:'#000072',height:30,width:80,borderRadius:10,marginLeft:10
     },
 
     kategoriteks:{

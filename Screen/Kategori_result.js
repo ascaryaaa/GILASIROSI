@@ -63,16 +63,16 @@ const KategoriResult = () => {
                       source={{ uri: 'http://192.168.1.7/gilasirosi/' + val.barang_foto }}
                       style={{ height: 200, width: 150, borderRadius: 10 }}
                     />
-                    <View style={{ flexDirection: 'column', padding: 1, borderRadius: 10, marginHorizontal: 1 }}>
-                      <View style={{ backgroundColor: '#080808', borderRadius: 10, height: 30, width: 150, marginTop: 10, marginLeft: 10 }}>
-                        <Text style={{ fontWeight: 'bold', color: '#ffffff', alignSelf: 'center', marginTop: 5, fontSize: 16 }}>{val.barang_nama}</Text>
+                    <View style={{ flexDirection: 'column', padding: 1, borderRadius: 10, marginHorizontal: 1,height: 210 }}>
+                      <View style={{ backgroundColor: '#000072', borderRadius: 10, width: 160, marginLeft: 10 }}>
+                        <Text style={{ fontWeight: 'bold', width: 140, color: '#ffffff', alignSelf: 'center', fontSize: 16,marginVertical:5 }}>{val.barang_nama}</Text>
                       </View>
-                      <View style={{ borderRadius: 10, height: 60, width: 150, marginTop: 10, marginLeft: 10 }}>
+                      <View style={{ borderRadius: 10, height: 45, width: 150, marginLeft: 10 }}>
                         <Text style={{ fontSize: 16, paddingTop: 5, fontWeight: 'bold', fontSize: 13 }}>Harga</Text>
-                        <Text style={{ fontSize: 16, paddingTop: 5, fontWeight: 'bold' }}>Rp.{val.barang_harga},00</Text>
+                        <Text style={{ fontSize: 16, paddingTop: 5, fontWeight: 'bold' }}>Rp.{val.barang_harga}</Text>
                       </View>
-                      <View style={{ borderRadius: 10, height: 80, width: 150, marginTop: 10, marginLeft: 10 }}>
-                        <Text style={{ fontSize: 16, paddingTop: 5, fontWeight: 'bold' }}>{val.barang_deskripsi}</Text>
+                      <View style={{ borderRadius: 10, height: 120, width: 150, marginLeft: 10 }}>
+                        <Text style={{ fontSize: 14, paddingTop: 5, marginTop: 5, textAlign: 'justify' }}>{val.barang_deskripsi}</Text>
                       </View>
                     </View>
                   </View>
@@ -106,32 +106,6 @@ const styles = ({
         backgroundColor: '#080808'
     },
 
-    searchflex: {
-        paddingTop:30,
-        flexDirection:'row',
-        alignItems:'center'
-    },
-
-    searchinput:{
-        width:250,
-        borderRadius:20,
-        padding:5,
-        paddingLeft:15,
-        borderColor:"#2f318d",
-        height:50,
-        borderWidth:1
-    },
-
-    searchbutton:{
-        backgroundColor:'#0f0f0f',
-        borderRadius:75,
-        width:50,
-        height:50,
-        alignItems:'center',
-        paddingTop:10,
-        marginLeft:10
-    },
-
     produk:{
         paddingTop:30,
         fontSize:20,
@@ -140,9 +114,12 @@ const styles = ({
     },
 
     cardflex:{
-        flexDirection:'row',
-        marginHorizontal:-10,
-        
+      flexDirection:'row',
+      marginHorizontal:-10,
+      backgroundColor:'#ffffff',
+      marginVertical: 5,
+      borderRadius: 10,
+      paddingTop: 7
     },
 
         produkimage:{

@@ -29,26 +29,30 @@ export default function Kategori({navigation}){
     return (
         <View>
             <View style={styles.background}>
-                <ScrollView style={styles.container}>
-                    <Image
-                        source={require('../assets/logo.png')}
-                        style={styles.logo}
-                    />
-                    <Text style={styles.kategori}>Kategori</Text>                    
-                    {kategori.map((val, index) => (
-                        <View key={index}>
-                            <TouchableOpacity onPress={() => { console.log('kategori_id:', val.kategori_id),navigateToKategori(val.kategori_id,val.kategori_nama) }}>
-                                <View style={styles.kategoripadding}>
-                                    <Image
-                                        source={{ uri: 'http://192.168.1.7/gilasirosi/' + val.kategori_foto }}
-                                        style={styles.kategoriimage}
-                                    />
-                                    <Text style={styles.kategoritotaltext}>{val.kategori_total} Produk</Text>
-                                </View>
-                            </TouchableOpacity>
+                <ScrollView>
+                    <View style={styles.container}>
+                        <View style={{ paddingTop: 80, backgroundColor: '#ffffff', marginHorizontal:-20, paddingHorizontal:20, paddingBottom:30}}>
+                            <Image
+                                source={require('../assets/logo.png')}
+                                style={styles.logo}
+                            />
                         </View>
-                    ))}
-                    <View style={{paddingBottom:150}}></View>
+                        <Text style={styles.kategori}>Kategori</Text>                    
+                        {kategori.map((val, index) => (
+                            <View key={index}>
+                                <TouchableOpacity onPress={() => { console.log('kategori_id:', val.kategori_id),navigateToKategori(val.kategori_id,val.kategori_nama) }}>
+                                    <View style={styles.kategoripadding}>
+                                        <Image
+                                            source={{ uri: 'http://192.168.1.7/gilasirosi/' + val.kategori_foto }}
+                                            style={styles.kategoriimage}
+                                        />
+                                        <Text style={styles.kategoritotaltext}>{val.kategori_total} Produk</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        ))}
+                        <View style={{paddingBottom:150}}></View>
+                    </View>
                 </ScrollView>
             </View>
             <Footer></Footer>
@@ -59,13 +63,17 @@ export default function Kategori({navigation}){
 
 const styles = StyleSheet.create({
     background:{
-        marginLeft:30,backgroundColor:'#f6f6f6',paddingBottom:0
+        backgroundColor:'#f5f5f5'
     },
     container:{
-        paddingTop:80,marginBottom:40
+        marginHorizontal:20,
+        paddingBottom:90
     },
     logo:{
-        height:50,width:200,marginBottom:30,alignSelf:'center'
+        height:60,
+        width:230,
+        marginBottom:30,
+        alignSelf:'center',
     },
     kategori:{
         fontSize:24,fontWeight:'bold'

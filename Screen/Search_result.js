@@ -56,29 +56,29 @@ const SearchResult = () => {
           <Text style={styles.produk}>Hasil Pencarian untuk "{searchkey}"</Text>
           {searchData.map((val, index) => (
             <View key={index}>
-              <View style={styles.cardflex}>
-                <TouchableOpacity color='#ffffff' onPress={() => { navigateToDetail(val.barang_id) }}>
-                  <View style={{ flexDirection: 'row', padding: 1, borderRadius: 10, marginHorizontal: 5 }}>
-                    <Image
-                      source={{ uri: 'http://192.168.1.7/gilasirosi/' + val.barang_foto }}
-                      style={{ height: 200, width: 150, borderRadius: 10 }}
-                    />
-                    <View style={{ flexDirection: 'column', padding: 1, borderRadius: 10, marginHorizontal: 1 }}>
-                      <View style={{ backgroundColor: '#080808', borderRadius: 10, height: 30, width: 150, marginTop: 10, marginLeft: 10 }}>
-                        <Text style={{ fontWeight: 'bold', color: '#ffffff', alignSelf: 'center', marginTop: 5, fontSize: 16 }}>{val.barang_nama}</Text>
-                      </View>
-                      <View style={{ borderRadius: 10, height: 60, width: 150, marginTop: 10, marginLeft: 10 }}>
-                        <Text style={{ fontSize: 16, paddingTop: 5, fontWeight: 'bold', fontSize: 13 }}>Harga</Text>
-                        <Text style={{ fontSize: 16, paddingTop: 5, fontWeight: 'bold' }}>Rp.{val.barang_harga},00</Text>
-                      </View>
-                      <View style={{ borderRadius: 10, height: 80, width: 150, marginTop: 10, marginLeft: 10 }}>
-                        <Text style={{ fontSize: 16, paddingTop: 5, fontWeight: 'bold' }}>{val.barang_deskripsi}</Text>
-                      </View>
+            <View style={styles.cardflex}>
+              <TouchableOpacity color='#ffffff' onPress={() => { navigateToDetail(val.barang_id) }}>
+                <View style={{ flexDirection: 'row', padding: 1, borderRadius: 10, marginHorizontal: 5 }}>
+                  <Image
+                    source={{ uri: 'http://192.168.1.7/gilasirosi/' + val.barang_foto }}
+                    style={{ height: 200, width: 150, borderRadius: 10 }}
+                  />
+                  <View style={{ flexDirection: 'column', padding: 1, borderRadius: 10, marginHorizontal: 1,height: 220 }}>
+                    <View style={{ backgroundColor: '#080808', borderRadius: 10, width: 170, marginLeft: 10 }}>
+                      <Text style={{ fontWeight: 'bold', width: 150, color: '#ffffff', alignSelf: 'center', fontSize: 16 }}>{val.barang_nama}</Text>
+                    </View>
+                    <View style={{ borderRadius: 10, height: 45, width: 150, marginLeft: 10 }}>
+                      <Text style={{ fontSize: 16, paddingTop: 5, fontWeight: 'bold', fontSize: 13 }}>Harga</Text>
+                      <Text style={{ fontSize: 16, paddingTop: 5, fontWeight: 'bold' }}>Rp.{val.barang_harga},00</Text>
+                    </View>
+                    <View style={{ borderRadius: 10, height: 120, width: 150, marginLeft: 10 }}>
+                      <Text style={{ fontSize: 16, paddingTop: 5, marginTop: 5, textAlign: 'justify' }}>{val.barang_deskripsi}</Text>
                     </View>
                   </View>
-                </TouchableOpacity>
-              </View>
+                </View>
+              </TouchableOpacity>
             </View>
+          </View>
           ))}
         </View>
       </ScrollView>
@@ -136,13 +136,16 @@ const styles = ({
         paddingTop:30,
         fontSize:20,
         fontWeight:'bold',
-        marginBottom:10
+        marginVertical: 30
     },
 
     cardflex:{
-        flexDirection:'row',
-        marginHorizontal:-10,
-        
+      flexDirection:'row',
+      marginHorizontal:-10,
+      backgroundColor:'#ffffff',
+      marginVertical: 5,
+      borderRadius: 10,
+      paddingTop: 7
     },
 
         produkimage:{

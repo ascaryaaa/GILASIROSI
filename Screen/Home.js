@@ -43,15 +43,15 @@ const Home = ({ navigation }) => {
     <View style={styles.background}>
       <ScrollView>
         <View style={styles.container}>
-          <View style={{ paddingTop: 80 }}>
+          <View style={{ paddingTop: 80, backgroundColor: '#ffffff', marginHorizontal:-20, paddingHorizontal:20, paddingBottom:30}}>
             <Image
               source={require('../assets/logo.png')}
               style={styles.logo}
             />
-            <Text style={{ fontSize: 24 }}>Lorem</Text>
-            <Text style={{ fontSize: 18 }}>Lorem Ipsum Lorem Ipsum</Text>
-            <Text style={{ fontSize: 20, color: '#080808', fontWeight: 'bold' }}>Lorem Ipsum</Text>
-            <Text style={{ fontSize: 28, color: '#080808', fontWeight: 'bold' }}>Lorem Ipsum</Text>
+            <Text style={{ fontSize: 28, color: '#000072', fontWeight: 'bold' }}>Selamat Datang di Gilasirosi</Text>
+            <Text style={{ fontSize: 18 }}>Digitalisasi Integritasi dan Kolaborasi</Text>
+
+            
           </View>
           <View style={styles.searchflex}>
             <TextInput
@@ -64,13 +64,13 @@ const Home = ({ navigation }) => {
               <View style={styles.searchbutton}>
                 <Image
                   source={require('../assets/search.png')}
-                  style={{ width: 24, height: 24 }}
+                  style={{ width: 26, height: 26, marginTop:2 }}
                 />
               </View>
             </TouchableOpacity>
           </View>
 
-          <Text style={styles.produk}>Harga Bahan Pokok</Text>
+          <Text style={styles.produk}>Daftar Produk</Text>
           {listData.map((val, index) => (
             <View key={index}>
               <View style={styles.cardflex}>
@@ -80,16 +80,16 @@ const Home = ({ navigation }) => {
                       source={{ uri: 'http://192.168.1.7/gilasirosi/' + val.barang_foto }}
                       style={{ height: 200, width: 150, borderRadius: 10 }}
                     />
-                    <View style={{ flexDirection: 'column', padding: 1, borderRadius: 10, marginHorizontal: 1 }}>
-                      <View style={{ backgroundColor: '#080808', borderRadius: 10, height: 30, width: 150, marginTop: 10, marginLeft: 10 }}>
-                        <Text style={{ fontWeight: 'bold', color: '#ffffff', alignSelf: 'center', marginTop: 5, fontSize: 16 }}>{val.barang_nama}</Text>
+                    <View style={{ flexDirection: 'column', padding: 1, borderRadius: 10, marginHorizontal: 1,height: 210 }}>
+                      <View style={{ backgroundColor: '#000072', borderRadius: 10, width: 160, marginLeft: 10 }}>
+                        <Text style={{ fontWeight: 'bold', width: 140, color: '#ffffff', alignSelf: 'center', fontSize: 16,marginVertical:5 }}>{val.barang_nama}</Text>
                       </View>
-                      <View style={{ borderRadius: 10, height: 60, width: 150, marginTop: 10, marginLeft: 10 }}>
+                      <View style={{ borderRadius: 10, height: 45, width: 150, marginLeft: 10 }}>
                         <Text style={{ fontSize: 16, paddingTop: 5, fontWeight: 'bold', fontSize: 13 }}>Harga</Text>
-                        <Text style={{ fontSize: 16, paddingTop: 5, fontWeight: 'bold' }}>Rp.{val.barang_harga},00</Text>
+                        <Text style={{ fontSize: 16, paddingTop: 5, fontWeight: 'bold' }}>Rp.{val.barang_harga}</Text>
                       </View>
-                      <View style={{ borderRadius: 10, height: 80, width: 150, marginTop: 10, marginLeft: 10 }}>
-                        <Text style={{ fontSize: 16, paddingTop: 5, fontWeight: 'bold' }}>{val.barang_deskripsi}</Text>
+                      <View style={{ borderRadius: 10, height: 120, width: 150, marginLeft: 10 }}>
+                        <Text style={{ fontSize: 14, paddingTop: 5, marginTop: 5, textAlign: 'justify' }}>{val.barang_deskripsi}</Text>
                       </View>
                     </View>
                   </View>
@@ -117,17 +117,17 @@ const styles = ({
     },
     
     logo:{
-        height:50,
+        height:60,
         width:230,
         marginBottom:30,
         alignSelf:'center',
-        backgroundColor: '#080808'
     },
 
     searchflex: {
-        paddingTop:30,
         flexDirection:'row',
-        alignItems:'center'
+        alignItems:'center',
+        marginTop:15,
+        marginBottom:5,
     },
 
     searchinput:{
@@ -135,13 +135,14 @@ const styles = ({
         borderRadius:20,
         padding:5,
         paddingLeft:15,
-        borderColor:"#2f318d",
+        borderColor:"#000072",
         height:50,
-        borderWidth:1
+        borderWidth:1,
+        backgroundColor: '#ffffff'
     },
 
     searchbutton:{
-        backgroundColor:'#0f0f0f',
+        backgroundColor:'#000072',
         borderRadius:75,
         width:50,
         height:50,
@@ -151,16 +152,18 @@ const styles = ({
     },
 
     produk:{
-        paddingTop:30,
         fontSize:20,
         fontWeight:'bold',
-        marginBottom:10
+        marginVertical: 5,
     },
 
     cardflex:{
         flexDirection:'row',
         marginHorizontal:-10,
-        
+        backgroundColor:'#ffffff',
+        marginVertical: 5,
+        borderRadius: 10,
+        paddingTop: 7
     },
 
         produkimage:{
