@@ -25,7 +25,7 @@ const KategoriResult = () => {
 
   const ambilKategoriData = async (kategori_id) => {
     try {
-      const response = await fetch(`http://192.168.1.7/gilasirosi/api/api.php/?op=kategori_filter&kategori_id=${kategori_id}`);
+      const response = await fetch(`http://192.168.227.54/gilasirosi/api/api.php/?op=kategori_filter&kategori_id=${kategori_id}`);
       const json = await response.json();
       console.log('Hasil yang didapat: ' + JSON.stringify(json.data.result));
       setkategoriData(json.data.result);
@@ -60,7 +60,7 @@ const KategoriResult = () => {
                 <TouchableOpacity color='#ffffff' onPress={() => { navigateToDetail(val.barang_id) }}>
                   <View style={{ flexDirection: 'row', padding: 1, borderRadius: 10, marginHorizontal: 5 }}>
                     <Image
-                      source={{ uri: 'http://192.168.1.7/gilasirosi/' + val.barang_foto }}
+                      source={{ uri: 'http://192.168.227.54/gilasirosi/' + val.barang_foto }}
                       style={{ height: 200, width: 150, borderRadius: 10 }}
                     />
                     <View style={{ flexDirection: 'column', padding: 1, borderRadius: 10, marginHorizontal: 1,height: 210 }}>

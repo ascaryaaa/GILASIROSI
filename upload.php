@@ -16,7 +16,7 @@
 
 <?php
 
-$mysqli = new mysqli('localhost','root','root','gilasirosi') or die($mysqli->connect_error);
+$mysqli = new mysqli('localhost','root','root','gila_sample') or die($mysqli->connect_error);
 $table = 'barang';
 
 $phpFileUploadErrors = array(

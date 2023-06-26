@@ -16,7 +16,7 @@ export default function Kategori({navigation}){
 
       const ambilKategori = async () => {
         try {
-          const response = await fetch(`http://192.168.1.7/gilasirosi/api/api.php/?op=kategori_display`);
+          const response = await fetch(`http://192.168.227.54/gilasirosi/api/api.php/?op=kategori_display`);
           const json = await response.json();
           console.log('Hasil yang didapat: ' + JSON.stringify(json.data.result));
           setkategori(json.data.result);
@@ -43,7 +43,7 @@ export default function Kategori({navigation}){
                                 <TouchableOpacity onPress={() => { console.log('kategori_id:', val.kategori_id),navigateToKategori(val.kategori_id,val.kategori_nama) }}>
                                     <View style={styles.kategoripadding}>
                                         <Image
-                                            source={{ uri: 'http://192.168.1.7/gilasirosi/' + val.kategori_foto }}
+                                            source={{ uri: 'http://192.168.227.54/gilasirosi/' + val.kategori_foto }}
                                             style={styles.kategoriimage}
                                         />
                                         <Text style={styles.kategoritotaltext}>{val.kategori_total} Produk</Text>
